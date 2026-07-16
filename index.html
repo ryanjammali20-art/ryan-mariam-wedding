@@ -396,6 +396,24 @@
       border-top: 1px solid var(--line);
     }
 
+    .footer-signature {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(38, 33, 29, 0.62);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 18px;
+      font-weight: 400;
+    }
+
+    .footer-signature::before,
+    .footer-signature::after {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: rgba(38, 33, 29, 0.22);
+    }
+
     [data-lang] { display: none; }
     body.lang-fr [data-lang="fr"],
     body.lang-en [data-lang="en"] { display: revert; }
@@ -551,6 +569,15 @@
 
       footer {
         padding: 28px 16px;
+      }
+
+      .footer-signature {
+        font-size: 16px;
+      }
+
+      .footer-signature::before,
+      .footer-signature::after {
+        width: 22px;
       }
     }
   </style>
@@ -721,9 +748,11 @@
         <h2 class="section-heading" data-lang="en">Schedule</h2>
         <p class="section-intro" data-lang="fr">Dimanche 25 octobre 2026, au Marriott Mena House, Cairo.</p>
         <p class="section-intro" data-lang="en">Sunday, October 25, 2026, at Marriott Mena House, Cairo.</p>
+        <p class="section-intro" data-lang="fr">Tous les horaires sont indiqués à l'heure locale du Caire.</p>
+        <p class="section-intro" data-lang="en">All times are shown in Cairo local time.</p>
         <div class="timeline">
           <div class="time-row">
-            <div class="time">3:00 PM (GMT+3)</div>
+            <div class="time">3:00 PM</div>
             <div class="schedule-card">
               <strong class="schedule-title" data-lang="fr"><i data-lucide="glass-water" class="icon"></i>Réception d'accueil</strong>
               <strong class="schedule-title" data-lang="en"><i data-lucide="glass-water" class="icon"></i>Welcome Reception</strong>
@@ -733,21 +762,21 @@
             </div>
           </div>
           <div class="time-row">
-            <div class="time">5:00 PM (GMT+3)</div>
+            <div class="time">5:00 PM</div>
             <div class="schedule-card">
               <strong class="schedule-title" data-lang="fr"><i data-lucide="party-popper" class="icon"></i>Début de la fête</strong>
               <strong class="schedule-title" data-lang="en"><i data-lucide="party-popper" class="icon"></i>Wedding Party Starts</strong>
             </div>
           </div>
           <div class="time-row">
-            <div class="time">7:30 PM (GMT+4)</div>
+            <div class="time">7:30 PM</div>
             <div class="schedule-card">
               <strong class="schedule-title" data-lang="fr"><i data-lucide="utensils" class="icon"></i>Dîner</strong>
               <strong class="schedule-title" data-lang="en"><i data-lucide="utensils" class="icon"></i>Dinner</strong>
             </div>
           </div>
           <div class="time-row">
-            <div class="time">11:00 PM (GMT+4)</div>
+            <div class="time">11:00 PM</div>
             <div class="schedule-card">
               <strong class="schedule-title" data-lang="fr"><i data-lucide="moon-star" class="icon"></i>Fin de la célébration</strong>
               <strong class="schedule-title" data-lang="en"><i data-lucide="moon-star" class="icon"></i>Celebration Ends</strong>
@@ -764,8 +793,8 @@
     </main>
 
     <footer>
-      <span data-lang="fr">Avec amour, Mariam & Ryan</span>
-      <span data-lang="en">With love, Mariam & Ryan</span>
+      <span class="footer-signature" data-lang="fr">Mariam & Ryan · 25 octobre 2026</span>
+      <span class="footer-signature" data-lang="en">Mariam & Ryan · October 25, 2026</span>
     </footer>
   </div>
 

@@ -120,8 +120,6 @@
       max-width: 1120px;
       min-height: min(720px, calc(100vh - 112px));
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
-      gap: clamp(28px, 5vw, 74px);
       align-items: center;
       margin: 0 auto;
     }
@@ -129,34 +127,6 @@
     .hero-inner {
       max-width: 760px;
       padding: clamp(20px, 4vw, 42px) 0;
-    }
-
-    .hero-photo {
-      position: relative;
-      align-self: stretch;
-      min-height: 560px;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(255, 255, 255, 0.56);
-      background: var(--wash);
-    }
-
-    .hero-photo img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-      object-position: center top;
-      filter: saturate(0.92) contrast(0.96);
-    }
-
-    .hero-photo::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(255, 250, 243, 0.04), rgba(38, 33, 29, 0.16));
-      pointer-events: none;
     }
 
     .eyebrow {
@@ -418,95 +388,6 @@
       background: rgba(255, 255, 255, 0.66);
     }
 
-    .stay-connector {
-      position: relative;
-      min-height: 360px;
-      margin: 28px 0;
-      padding: 24px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background:
-        linear-gradient(90deg, rgba(111, 115, 86, 0.08) 1px, transparent 1px),
-        linear-gradient(rgba(111, 115, 86, 0.08) 1px, transparent 1px),
-        linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(245, 236, 223, 0.76));
-      background-size: 58px 58px, 58px 58px, auto;
-      box-shadow: 0 8px 28px rgba(38, 33, 29, 0.07);
-    }
-
-    .connector-line {
-      position: absolute;
-      inset: 28% 10% auto 12%;
-      height: 2px;
-      background: linear-gradient(90deg, rgba(184, 109, 99, 0.16), rgba(184, 109, 99, 0.62), rgba(184, 109, 99, 0.12));
-      transform: rotate(-8deg);
-      transform-origin: left center;
-    }
-
-    .map-pin {
-      position: absolute;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 10px;
-      font-size: 13px;
-      font-weight: 800;
-      border-radius: 999px;
-      background: #fff;
-      border: 1px solid var(--line);
-      box-shadow: 0 10px 28px rgba(38, 33, 29, 0.12);
-    }
-
-    .map-pin .icon {
-      color: var(--rose);
-    }
-
-    .map-pin.venue {
-      left: 44%;
-      top: 48%;
-      color: #fff;
-      background: var(--ink);
-      border-color: var(--ink);
-    }
-
-    .map-pin.venue .icon {
-      color: var(--gold);
-    }
-
-    .map-pin.p1 { left: 12%; top: 24%; }
-    .map-pin.p2 { right: 12%; top: 22%; }
-    .map-pin.p3 { left: 20%; bottom: 24%; }
-    .map-pin.p4 { right: 18%; bottom: 26%; }
-
-    .connector-pill {
-      position: absolute;
-      left: 50%;
-      bottom: 24px;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 12px;
-      color: var(--ink);
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.92);
-      box-shadow: 0 14px 36px rgba(38, 33, 29, 0.16);
-      transform: translateX(-50%);
-      white-space: nowrap;
-    }
-
-    .connector-pill a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 38px;
-      padding: 8px 14px;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 999px;
-      background: var(--ink);
-    }
-
     footer {
       padding: 34px clamp(18px, 4vw, 56px);
       color: var(--muted);
@@ -584,7 +465,6 @@
       }
 
       .hero {
-        grid-template-columns: 1fr;
         min-height: auto;
         align-items: start;
         padding: 28px 0 46px;
@@ -593,11 +473,6 @@
       .hero-inner {
         max-width: none;
         padding: 0;
-      }
-
-      .hero-photo {
-        min-height: 460px;
-        order: -1;
       }
 
       h1 {
@@ -655,20 +530,6 @@
         background-position: 56% center;
       }
 
-      .stay-connector {
-        min-height: 330px;
-        padding: 16px;
-      }
-
-      .map-pin {
-        font-size: 12px;
-      }
-
-      .map-pin.p1 { left: 5%; top: 20%; }
-      .map-pin.p2 { right: 4%; top: 22%; }
-      .map-pin.p3 { left: 8%; bottom: 30%; }
-      .map-pin.p4 { right: 8%; bottom: 32%; }
-      .map-pin.venue { left: 36%; top: 46%; }
     }
 
     @media (max-width: 470px) {
@@ -699,22 +560,12 @@
         font-size: clamp(46px, 19vw, 66px);
       }
 
-      .hero-photo {
-        min-height: 390px;
-      }
-
       .eyebrow {
         font-size: 12px;
       }
 
       .facts li {
         width: 100%;
-      }
-
-      .connector-pill {
-        width: calc(100% - 32px);
-        justify-content: space-between;
-        white-space: normal;
       }
 
       footer {
@@ -772,9 +623,6 @@
             <a class="button secondary" href="#schedule" data-lang="en"><i data-lucide="clock" class="icon"></i>View schedule</a>
           </div>
         </div>
-        <figure class="hero-photo" aria-label="Mariam and Ryan">
-          <img src="assets/mariam-ryan-venue.webp" alt="Mariam and Ryan in an elegant gold interior">
-        </figure>
       </section>
 
       <section class="section" id="details">
@@ -852,19 +700,6 @@
         <h2 class="section-heading" data-lang="en">Where to Stay</h2>
         <p class="section-intro" data-lang="fr">Nous avons sélectionné quelques hôtels pour faciliter votre séjour. Pour profiter des Pyramides et des festivités, privilégiez les hôtels près du lieu. Pour explorer davantage Le Caire, Downtown est aussi une bonne option.</p>
         <p class="section-intro" data-lang="en">We have selected a few hotels to make your stay easier. If you want to relax near the Pyramids and the wedding festivities, stay close to the venue. If you would like to explore Cairo, Downtown is also a great option.</p>
-        <div class="stay-connector" aria-label="Hotel map connector">
-          <div class="connector-line"></div>
-          <span class="map-pin p1"><i data-lucide="hotel" class="icon"></i>Hyatt</span>
-          <span class="map-pin p2"><i data-lucide="waves" class="icon"></i>Nile</span>
-          <span class="map-pin venue"><i data-lucide="map-pin" class="icon"></i>Venue</span>
-          <span class="map-pin p3"><i data-lucide="landmark" class="icon"></i>Mena House</span>
-          <span class="map-pin p4"><i data-lucide="building-2" class="icon"></i>Downtown</span>
-          <div class="connector-pill">
-            <span data-lang="fr">25 octobre 2026</span>
-            <span data-lang="en">October 25, 2026</span>
-            <a href="https://withjoy.com/ryan-and-mariam-oct-26/rsvp?utm_medium=web&utm_source=joy&utm_campaign=website_overview_copy" target="_blank" rel="noopener">RSVP</a>
-          </div>
-        </div>
         <div class="hotel-list" style="margin-top: 18px;">
           <article class="hotel">
             <div class="hotel-heading"><i data-lucide="hotel" class="icon"></i><strong>Hyatt Regency Cairo West</strong></div>

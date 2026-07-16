@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mariam & Ryan | Wedding</title>
   <meta name="description" content="Bilingual wedding website for Mariam and Ryan.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --ink: #26211d;
@@ -54,7 +57,7 @@
     }
 
     .brand {
-      font-family: Georgia, "Times New Roman", serif;
+      font-family: "Playfair Display", Georgia, serif;
       font-size: clamp(22px, 3vw, 34px);
       line-height: 1;
       white-space: nowrap;
@@ -136,10 +139,11 @@
 
     h1 {
       margin: 18px 0;
-      font-family: Georgia, "Times New Roman", serif;
+      font-family: "Playfair Display", Georgia, serif;
       font-size: clamp(52px, 11vw, 126px);
       line-height: 0.92;
       letter-spacing: 0;
+      font-weight: 500;
     }
 
     .lead {
@@ -159,6 +163,9 @@
     }
 
     .facts li {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       padding: 8px 12px;
       color: var(--ink);
       border: 1px solid var(--line);
@@ -203,9 +210,35 @@
 
     .section-heading {
       margin: 0 0 24px;
-      font-family: Georgia, "Times New Roman", serif;
+      font-family: "Playfair Display", Georgia, serif;
       font-size: clamp(34px, 5vw, 58px);
       line-height: 1;
+      font-weight: 500;
+    }
+
+    .icon {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+      stroke-width: 1.8;
+    }
+
+    .icon-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 16px;
+      color: var(--rose);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .icon-pill .icon {
+      width: 21px;
+      height: 21px;
     }
 
     .section-intro {
@@ -267,9 +300,15 @@
       background: rgba(255, 255, 255, 0.76);
     }
 
+    .hotel-heading {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
     .hotel strong {
       display: block;
-      margin-bottom: 6px;
     }
 
     .hotel span {
@@ -278,22 +317,69 @@
     }
 
     .timeline {
+      position: relative;
       display: grid;
-      gap: 12px;
+      gap: 0;
       max-width: 860px;
+      margin-top: 30px;
+      padding-left: 28px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 12px;
+      bottom: 12px;
+      left: 9px;
+      width: 1px;
+      background: linear-gradient(var(--rose), rgba(184, 145, 87, 0.25));
     }
 
     .time-row {
+      position: relative;
       display: grid;
       grid-template-columns: 128px 1fr;
       gap: 18px;
-      padding: 20px 0;
-      border-top: 1px solid var(--line);
+      padding: 0 0 24px;
+      border-top: 0;
+    }
+
+    .time-row::before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: -27px;
+      width: 19px;
+      height: 19px;
+      border: 4px solid var(--paper);
+      border-radius: 999px;
+      background: var(--rose);
+      box-shadow: 0 0 0 1px var(--line);
     }
 
     .time {
       color: var(--rose);
       font-weight: 900;
+    }
+
+    .schedule-card {
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: 0 8px 28px rgba(38, 33, 29, 0.06);
+    }
+
+    .schedule-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .schedule-title .icon {
+      color: var(--gold);
     }
 
     .note {
@@ -313,6 +399,20 @@
     [data-lang] { display: none; }
     body.lang-fr [data-lang="fr"],
     body.lang-en [data-lang="en"] { display: revert; }
+
+    body.lang-fr .nav-link[data-lang="fr"],
+    body.lang-en .nav-link[data-lang="en"],
+    body.lang-fr .button[data-lang="fr"],
+    body.lang-en .button[data-lang="en"],
+    body.lang-fr .facts li[data-lang="fr"],
+    body.lang-en .facts li[data-lang="en"] {
+      display: inline-flex;
+    }
+
+    body.lang-fr .schedule-title[data-lang="fr"],
+    body.lang-en .schedule-title[data-lang="en"] {
+      display: flex;
+    }
 
     @media (max-width: 900px) {
       header {
@@ -404,7 +504,7 @@
       .time-row {
         grid-template-columns: 1fr;
         gap: 4px;
-        padding: 16px 0;
+        padding: 0 0 18px;
       }
 
       .shell {
@@ -460,12 +560,12 @@
     <header>
       <div class="brand">Mariam & Ryan</div>
       <nav aria-label="Navigation">
-        <a class="nav-link" href="#travel" data-lang="fr">Voyage</a>
-        <a class="nav-link" href="#stay" data-lang="fr">Hôtels</a>
-        <a class="nav-link" href="#schedule" data-lang="fr">Programme</a>
-        <a class="nav-link" href="#travel" data-lang="en">Travel</a>
-        <a class="nav-link" href="#stay" data-lang="en">Stay</a>
-        <a class="nav-link" href="#schedule" data-lang="en">Schedule</a>
+        <a class="nav-link" href="#travel" data-lang="fr"><i data-lucide="plane" class="icon"></i>Voyage</a>
+        <a class="nav-link" href="#stay" data-lang="fr"><i data-lucide="bed-double" class="icon"></i>Hôtels</a>
+        <a class="nav-link" href="#schedule" data-lang="fr"><i data-lucide="calendar-days" class="icon"></i>Programme</a>
+        <a class="nav-link" href="#travel" data-lang="en"><i data-lucide="plane" class="icon"></i>Travel</a>
+        <a class="nav-link" href="#stay" data-lang="en"><i data-lucide="bed-double" class="icon"></i>Stay</a>
+        <a class="nav-link" href="#schedule" data-lang="en"><i data-lucide="calendar-days" class="icon"></i>Schedule</a>
         <div class="language-switch" aria-label="Language">
           <button class="lang-button active" type="button" data-set-lang="fr" aria-pressed="true">FR</button>
           <button class="lang-button" type="button" data-set-lang="en" aria-pressed="false">EN</button>
@@ -482,17 +582,17 @@
           <p class="lead" data-lang="fr">Avec joie et gratitude, nous vous invitons à célébrer notre mariage avec nous. Attendez-vous à beaucoup d'amour, de musique et de célébration.</p>
           <p class="lead" data-lang="en">With joy and gratitude, we invite you to celebrate our wedding with us. Expect love, music, and lots of celebration.</p>
           <ul class="facts">
-            <li data-lang="fr">Dimanche 25 octobre 2026</li>
-            <li data-lang="en">Sunday, October 25, 2026</li>
-            <li>Marriott Mena House, Cairo</li>
-            <li data-lang="fr">Tenue formelle & Black Tie</li>
-            <li data-lang="en">Formal Wedding Attire & Black Tie</li>
+            <li data-lang="fr"><i data-lucide="calendar-heart" class="icon"></i>Dimanche 25 octobre 2026</li>
+            <li data-lang="en"><i data-lucide="calendar-heart" class="icon"></i>Sunday, October 25, 2026</li>
+            <li><i data-lucide="map-pin" class="icon"></i>Marriott Mena House, Cairo</li>
+            <li data-lang="fr"><i data-lucide="sparkles" class="icon"></i>Tenue formelle & Black Tie</li>
+            <li data-lang="en"><i data-lucide="sparkles" class="icon"></i>Formal Wedding Attire & Black Tie</li>
           </ul>
           <div class="actions">
-            <a class="button primary" href="https://withjoy.com/ryan-and-mariam-oct-26/rsvp?utm_medium=web&utm_source=joy&utm_campaign=website_overview_copy" target="_blank" rel="noopener" data-lang="fr">Confirmer ma présence</a>
-            <a class="button primary" href="https://withjoy.com/ryan-and-mariam-oct-26/rsvp?utm_medium=web&utm_source=joy&utm_campaign=website_overview_copy" target="_blank" rel="noopener" data-lang="en">RSVP on Joy</a>
-            <a class="button secondary" href="#schedule" data-lang="fr">Voir le programme</a>
-            <a class="button secondary" href="#schedule" data-lang="en">View schedule</a>
+            <a class="button primary" href="https://withjoy.com/ryan-and-mariam-oct-26/rsvp?utm_medium=web&utm_source=joy&utm_campaign=website_overview_copy" target="_blank" rel="noopener" data-lang="fr"><i data-lucide="send" class="icon"></i>Confirmer ma présence</a>
+            <a class="button primary" href="https://withjoy.com/ryan-and-mariam-oct-26/rsvp?utm_medium=web&utm_source=joy&utm_campaign=website_overview_copy" target="_blank" rel="noopener" data-lang="en"><i data-lucide="send" class="icon"></i>RSVP on Joy</a>
+            <a class="button secondary" href="#schedule" data-lang="fr"><i data-lucide="clock" class="icon"></i>Voir le programme</a>
+            <a class="button secondary" href="#schedule" data-lang="en"><i data-lucide="clock" class="icon"></i>View schedule</a>
           </div>
         </div>
       </section>
@@ -502,6 +602,7 @@
         <h2 class="section-heading" data-lang="en">Key Details</h2>
         <div class="grid">
           <article class="card">
+            <div class="icon-pill"><i data-lucide="calendar-days" class="icon"></i></div>
             <div class="meta" data-lang="fr">Date</div>
             <div class="meta" data-lang="en">Date</div>
             <h3 data-lang="fr">Dimanche 25 octobre 2026</h3>
@@ -510,12 +611,14 @@
             <p data-lang="en">The welcome reception begins at 3:00 PM.</p>
           </article>
           <article class="card">
+            <div class="icon-pill"><i data-lucide="map-pin" class="icon"></i></div>
             <div class="meta" data-lang="fr">Lieu</div>
             <div class="meta" data-lang="en">Venue</div>
             <h3>Marriott Mena House, Cairo</h3>
             <p>6 Pyramids Road Cairo، Kafr Nassar, Al Haram, Giza Governorate 12556, Egypt</p>
           </article>
           <article class="card">
+            <div class="icon-pill"><i data-lucide="sparkles" class="icon"></i></div>
             <div class="meta" data-lang="fr">Dress code</div>
             <div class="meta" data-lang="en">Dress code</div>
             <h3 data-lang="fr">Tenue formelle & Black Tie</h3>
@@ -533,11 +636,13 @@
         <p class="section-intro" data-lang="en">Here is the useful travel information for arriving in Cairo and getting around during your stay.</p>
         <div class="grid two">
           <article class="card compact">
+            <div class="icon-pill"><i data-lucide="plane-landing" class="icon"></i></div>
             <h3>Sphinx International Airport (SPX)</h3>
             <p data-lang="fr">L'aéroport le plus proche du lieu du mariage. Idéal si vous prévoyez de rester près des Pyramides.</p>
             <p data-lang="en">The closest airport to the wedding venue. A great option if you plan to stay near the Pyramids.</p>
           </article>
           <article class="card compact">
+            <div class="icon-pill"><i data-lucide="plane" class="icon"></i></div>
             <h3>Cairo International Airport (CAI)</h3>
             <p data-lang="fr">Propose un plus grand choix de vols internationaux et convient bien si vous souhaitez explorer davantage Le Caire.</p>
             <p data-lang="en">Offers a wider range of international flights and is a great option if you would like to explore more of Cairo.</p>
@@ -545,6 +650,7 @@
         </div>
         <div class="grid two" style="margin-top: 14px;">
           <article class="card compact">
+            <div class="icon-pill"><i data-lucide="car-front" class="icon"></i></div>
             <h3 data-lang="fr">Transferts aéroport</h3>
             <h3 data-lang="en">Airport transfers</h3>
             <p data-lang="fr">Nous recommandons Confirm Limousine Service pour un service fiable et de bons tarifs. Vous pouvez aussi utiliser Uber.</p>
@@ -552,6 +658,7 @@
             <p><strong>WhatsApp:</strong> <a href="tel:+201000657465">+201000657465</a></p>
           </article>
           <article class="card compact">
+            <div class="icon-pill"><i data-lucide="route" class="icon"></i></div>
             <h3 data-lang="fr">Se déplacer au Caire</h3>
             <h3 data-lang="en">Getting around Cairo</h3>
             <p data-lang="fr">Uber est le moyen le plus simple et pratique pour se déplacer en ville et aller au lieu du mariage. Conseil: choisissez Uber Comfort pour une meilleure expérience.</p>
@@ -572,37 +679,37 @@
         </div>
         <div class="hotel-list" style="margin-top: 18px;">
           <article class="hotel">
-            <strong>Hyatt Regency Cairo West</strong>
+            <div class="hotel-heading"><i data-lucide="hotel" class="icon"></i><strong>Hyatt Regency Cairo West</strong></div>
             <span>4.3 mi</span>
             <span>Special event rate: $197 to $189</span>
           </article>
           <article class="hotel">
-            <strong>Marriott Mena House Cairo</strong>
+            <div class="hotel-heading"><i data-lucide="landmark" class="icon"></i><strong>Marriott Mena House Cairo</strong></div>
             <span>0.1 mi</span>
             <span>Special event rate: $507 to $486</span>
           </article>
           <article class="hotel">
-            <strong>Sofitel Cairo Downtown Nile</strong>
+            <div class="hotel-heading"><i data-lucide="hotel" class="icon"></i><strong>Sofitel Cairo Downtown Nile</strong></div>
             <span>7.9 mi</span>
             <span>Special event rate: $176 to $169</span>
           </article>
           <article class="hotel">
-            <strong>Giza Palace Hotel & Spa - The Leading Hotels of the World</strong>
+            <div class="hotel-heading"><i data-lucide="gem" class="icon"></i><strong>Giza Palace Hotel & Spa - The Leading Hotels of the World</strong></div>
             <span>8.2 mi</span>
             <span>Special event rate: $283 to $274</span>
           </article>
           <article class="hotel">
-            <strong>Four Seasons Hotel Cairo at First Residence</strong>
+            <div class="hotel-heading"><i data-lucide="hotel" class="icon"></i><strong>Four Seasons Hotel Cairo at First Residence</strong></div>
             <span>5.7 mi</span>
             <span>Special event rate: $361 to $345</span>
           </article>
           <article class="hotel">
-            <strong>Kempinski Nile Hotel Cairo</strong>
+            <div class="hotel-heading"><i data-lucide="waves" class="icon"></i><strong>Kempinski Nile Hotel Cairo</strong></div>
             <span>6.9 mi</span>
             <span>Special event rate: $190 to $182</span>
           </article>
           <article class="hotel">
-            <strong>Crowne Plaza West Cairo Arkan by IHG</strong>
+            <div class="hotel-heading"><i data-lucide="building-2" class="icon"></i><strong>Crowne Plaza West Cairo Arkan by IHG</strong></div>
             <span>8.1 mi</span>
             <span>Special event rate: $182 to $174</span>
           </article>
@@ -617,9 +724,9 @@
         <div class="timeline">
           <div class="time-row">
             <div class="time">3:00 PM (GMT+3)</div>
-            <div>
-              <strong data-lang="fr">Réception d'accueil</strong>
-              <strong data-lang="en">Welcome Reception</strong>
+            <div class="schedule-card">
+              <strong class="schedule-title" data-lang="fr"><i data-lucide="glass-water" class="icon"></i>Réception d'accueil</strong>
+              <strong class="schedule-title" data-lang="en"><i data-lucide="glass-water" class="icon"></i>Welcome Reception</strong>
               <p data-lang="fr">Rendez-vous au 139 Pavilion Garden pour profiter des boissons de bienvenue.</p>
               <p data-lang="en">Head to the 139 Pavilion Garden and enjoy welcome drinks.</p>
               <p>6 Pyramids Road Cairo، Kafr Nassar, Al Haram, Giza Governorate 12556, Egypt</p>
@@ -627,31 +734,31 @@
           </div>
           <div class="time-row">
             <div class="time">5:00 PM (GMT+3)</div>
-            <div>
-              <strong data-lang="fr">Début de la fête</strong>
-              <strong data-lang="en">Wedding Party Starts</strong>
+            <div class="schedule-card">
+              <strong class="schedule-title" data-lang="fr"><i data-lucide="party-popper" class="icon"></i>Début de la fête</strong>
+              <strong class="schedule-title" data-lang="en"><i data-lucide="party-popper" class="icon"></i>Wedding Party Starts</strong>
             </div>
           </div>
           <div class="time-row">
             <div class="time">7:30 PM (GMT+4)</div>
-            <div>
-              <strong data-lang="fr">Dîner</strong>
-              <strong data-lang="en">Dinner</strong>
+            <div class="schedule-card">
+              <strong class="schedule-title" data-lang="fr"><i data-lucide="utensils" class="icon"></i>Dîner</strong>
+              <strong class="schedule-title" data-lang="en"><i data-lucide="utensils" class="icon"></i>Dinner</strong>
             </div>
           </div>
           <div class="time-row">
             <div class="time">11:00 PM (GMT+4)</div>
-            <div>
-              <strong data-lang="fr">Fin de la célébration</strong>
-              <strong data-lang="en">Celebration Ends</strong>
+            <div class="schedule-card">
+              <strong class="schedule-title" data-lang="fr"><i data-lucide="moon-star" class="icon"></i>Fin de la célébration</strong>
+              <strong class="schedule-title" data-lang="en"><i data-lucide="moon-star" class="icon"></i>Celebration Ends</strong>
             </div>
           </div>
         </div>
         <div class="actions" style="margin-top: 24px;">
-          <a class="button primary" href="https://withjoy.com/ryan-and-mariam-oct-26/rsvp?utm_medium=web&utm_source=joy&utm_campaign=website_overview_copy" target="_blank" rel="noopener" data-lang="fr">Confirmer ma présence</a>
-          <a class="button primary" href="https://withjoy.com/ryan-and-mariam-oct-26/rsvp?utm_medium=web&utm_source=joy&utm_campaign=website_overview_copy" target="_blank" rel="noopener" data-lang="en">RSVP on Joy</a>
-          <a class="button secondary" href="https://www.google.com/maps/search/?api=1&query=6+Pyramids+Road+Cairo%D8%8C+Kafr+Nassar%2C+Al+Haram%2C+Giza+Governorate+12556%2C+Egypt" target="_blank" rel="noopener" data-lang="fr">Voir l'itinéraire</a>
-          <a class="button secondary" href="https://www.google.com/maps/search/?api=1&query=6+Pyramids+Road+Cairo%D8%8C+Kafr+Nassar%2C+Al+Haram%2C+Giza+Governorate+12556%2C+Egypt" target="_blank" rel="noopener" data-lang="en">Get directions</a>
+          <a class="button primary" href="https://withjoy.com/ryan-and-mariam-oct-26/rsvp?utm_medium=web&utm_source=joy&utm_campaign=website_overview_copy" target="_blank" rel="noopener" data-lang="fr"><i data-lucide="send" class="icon"></i>Confirmer ma présence</a>
+          <a class="button primary" href="https://withjoy.com/ryan-and-mariam-oct-26/rsvp?utm_medium=web&utm_source=joy&utm_campaign=website_overview_copy" target="_blank" rel="noopener" data-lang="en"><i data-lucide="send" class="icon"></i>RSVP on Joy</a>
+          <a class="button secondary" href="https://www.google.com/maps/search/?api=1&query=6+Pyramids+Road+Cairo%D8%8C+Kafr+Nassar%2C+Al+Haram%2C+Giza+Governorate+12556%2C+Egypt" target="_blank" rel="noopener" data-lang="fr"><i data-lucide="map" class="icon"></i>Voir l'itinéraire</a>
+          <a class="button secondary" href="https://www.google.com/maps/search/?api=1&query=6+Pyramids+Road+Cairo%D8%8C+Kafr+Nassar%2C+Al+Haram%2C+Giza+Governorate+12556%2C+Egypt" target="_blank" rel="noopener" data-lang="en"><i data-lucide="map" class="icon"></i>Get directions</a>
         </div>
       </section>
     </main>
@@ -662,6 +769,7 @@
     </footer>
   </div>
 
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script>
     const buttons = [...document.querySelectorAll("[data-set-lang]")];
     const saved = localStorage.getItem("wedding-language");
@@ -684,6 +792,7 @@
     });
 
     setLanguage(initial);
+    lucide.createIcons();
   </script>
 </body>
 </html>

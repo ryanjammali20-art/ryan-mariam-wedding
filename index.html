@@ -144,39 +144,58 @@
 
     .hero {
       max-width: 1120px;
-      min-height: min(720px, calc(100vh - 112px));
+      min-height: 620px;
+      min-height: 82svh;
       display: grid;
-      align-items: center;
+      align-items: end;
       margin: 0 auto;
+      padding: clamp(22px, 4vw, 56px);
+      overflow: hidden;
+      border-radius: 14px;
+      background:
+        linear-gradient(180deg, rgba(24, 34, 24, 0.1) 0%, rgba(24, 34, 24, 0.22) 42%, rgba(18, 28, 19, 0.78) 100%),
+        url("assets/mena-house-hero.png") 36% center / cover no-repeat;
+      box-shadow: 0 22px 70px rgba(38, 33, 29, 0.18);
     }
 
     .hero-inner {
-      max-width: 760px;
-      padding: clamp(20px, 4vw, 42px) 0;
+      max-width: 620px;
+      padding: 0;
+      color: #fff8f0;
+      text-shadow: 0 2px 18px rgba(0, 0, 0, 0.38);
     }
 
     .eyebrow {
-      color: var(--rose);
-      font-size: 14px;
+      color: #ead7b8;
+      font-size: 12px;
       font-weight: 800;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.13em;
       text-transform: uppercase;
     }
 
     h1 {
-      margin: 18px 0;
+      margin: 12px 0 18px;
       font-family: "Playfair Display", Georgia, serif;
-      font-size: clamp(52px, 11vw, 126px);
-      line-height: 0.92;
+      font-size: clamp(72px, 16vw, 138px);
+      line-height: 0.82;
       letter-spacing: 0;
       font-weight: 500;
     }
 
     .lead {
-      max-width: 700px;
-      margin: 0 0 30px;
-      color: var(--muted);
-      font-size: clamp(18px, 2.2vw, 24px);
+      max-width: 360px;
+      margin: 0 0 26px;
+      color: #ead7b8;
+      font-size: clamp(17px, 2vw, 22px);
+      line-height: 1.5;
+    }
+
+    .hero-date {
+      margin: 0 0 8px;
+      color: #fff8f0;
+      font-size: clamp(17px, 2vw, 22px);
+      font-weight: 700;
+      letter-spacing: 0.03em;
     }
 
     .actions {
@@ -470,8 +489,12 @@
 
       .hero {
         min-height: auto;
+        min-height: 78svh;
         align-items: start;
-        padding: 28px 0 46px;
+        align-items: end;
+        padding: 32px 18px;
+        border-radius: 12px;
+        background-position: 34% center;
       }
 
       .hero-inner {
@@ -480,15 +503,16 @@
       }
 
       h1 {
-        margin: 14px 0 16px;
-        font-size: clamp(48px, 18vw, 72px);
-        line-height: 0.94;
+        margin: 12px 0 18px;
+        font-size: clamp(68px, 19vw, 92px);
+        line-height: 0.82;
       }
 
       .lead {
-        margin-bottom: 22px;
-        font-size: 18px;
-        line-height: 1.55;
+        max-width: 300px;
+        margin-bottom: 24px;
+        font-size: 17px;
+        line-height: 1.45;
       }
 
       .actions {
@@ -561,7 +585,7 @@
       }
 
       h1 {
-        font-size: clamp(46px, 19vw, 66px);
+        font-size: clamp(64px, 20vw, 82px);
       }
 
       .eyebrow {
@@ -604,16 +628,12 @@
     <main>
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-inner">
-          <div class="eyebrow" data-lang="fr">Nous nous marions</div>
-          <div class="eyebrow" data-lang="en">We are getting married</div>
+          <div class="eyebrow">We are getting married</div>
           <h1 id="hero-title">Mariam &<br>Ryan</h1>
-          <p class="lead" data-lang="fr">Avec joie et gratitude, nous vous invitons à célébrer notre mariage avec nous. Attendez-vous à beaucoup d'amour, de musique et de célébration.</p>
-          <p class="lead" data-lang="en">With joy and gratitude, we invite you to celebrate our wedding with us. Expect love, music, and lots of celebration.</p>
+          <p class="hero-date">25 October 2026</p>
+          <p class="lead">Marriott Mena House<br>Cairo, Egypt</p>
           <div class="actions">
-            <a class="button primary" href="https://withjoy.com/ryan-and-mariam-oct-26/rsvp?utm_medium=web&utm_source=joy&utm_campaign=website_overview_copy" target="_blank" rel="noopener" data-lang="fr"><i data-lucide="send" class="icon"></i>Confirmer ma présence</a>
-            <a class="button primary" href="https://withjoy.com/ryan-and-mariam-oct-26/rsvp?utm_medium=web&utm_source=joy&utm_campaign=website_overview_copy" target="_blank" rel="noopener" data-lang="en"><i data-lucide="send" class="icon"></i>RSVP on Joy</a>
-            <a class="button secondary" href="#schedule" data-lang="fr"><i data-lucide="clock" class="icon"></i>Voir le programme</a>
-            <a class="button secondary" href="#schedule" data-lang="en"><i data-lucide="clock" class="icon"></i>View schedule</a>
+            <a class="button primary" href="https://withjoy.com/ryan-and-mariam-oct-26/rsvp?utm_medium=web&utm_source=joy&utm_campaign=website_overview_copy" target="_blank" rel="noopener"><i data-lucide="send" class="icon"></i>RSVP</a>
           </div>
         </div>
       </section>

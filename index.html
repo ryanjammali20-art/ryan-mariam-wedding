@@ -233,6 +233,65 @@
       border-top: 1px solid var(--line);
     }
 
+    .section.reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 850ms ease, transform 850ms ease;
+    }
+
+    .section.reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .quote-section {
+      display: grid;
+      place-items: center;
+      min-height: 360px;
+      padding: clamp(110px, 18vw, 150px) 0;
+      text-align: center;
+      border-top: 0;
+    }
+
+    .quote-text {
+      max-width: 690px;
+      margin: 0 auto;
+      color: #343826;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(36px, 9vw, 72px);
+      line-height: 1.02;
+      font-weight: 400;
+    }
+
+    .monogram-separator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      width: min(380px, 100%);
+      margin: 34px auto 0;
+      color: rgba(52, 56, 38, 0.66);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 14px;
+      letter-spacing: 0.22em;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 850ms ease 180ms, transform 850ms ease 180ms;
+    }
+
+    .is-visible .monogram-separator {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .monogram-separator::before,
+    .monogram-separator::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: rgba(52, 56, 38, 0.18);
+    }
+
     .section-heading {
       margin: 0 0 24px;
       font-family: "Playfair Display", Georgia, serif;
@@ -312,99 +371,276 @@
       margin-bottom: 8px;
     }
 
-    .hotel-list {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
+    .hotel-shell {
+      margin-top: 26px;
     }
 
-    .hotel {
-      padding: 18px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.76);
-    }
-
-    .hotel-heading {
+    .hotel-toolbar {
       display: flex;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 6px;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 16px;
     }
 
-    .hotel strong {
-      display: block;
-    }
-
-    .hotel span {
-      display: block;
+    .carousel-status {
       color: var(--muted);
+      font-size: 14px;
+      letter-spacing: 0.08em;
+    }
+
+    .carousel-controls {
+      display: flex;
+      gap: 8px;
+    }
+
+    .carousel-arrow {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      color: var(--ink);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      cursor: pointer;
+    }
+
+    .hotel-carousel {
+      display: grid;
+      grid-auto-columns: minmax(280px, 82%);
+      grid-auto-flow: column;
+      gap: 18px;
+      padding: 4px 0 22px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding-inline: 2px;
+      scrollbar-width: none;
+    }
+
+    .hotel-carousel::-webkit-scrollbar {
+      display: none;
+    }
+
+    .hotel-card {
+      scroll-snap-align: start;
+      overflow: hidden;
+      border: 1px solid rgba(38, 33, 29, 0.12);
+      border-radius: 10px;
+      background: rgba(255, 252, 246, 0.9);
+      box-shadow: 0 18px 45px rgba(38, 33, 29, 0.11);
+    }
+
+    .hotel-image {
+      position: relative;
+      display: grid;
+      place-items: end start;
+      aspect-ratio: 4 / 3;
+      padding: 18px;
+      overflow: hidden;
+      color: #fff8f0;
+      background:
+        linear-gradient(180deg, rgba(50, 57, 39, 0.06), rgba(36, 43, 31, 0.72)),
+        linear-gradient(135deg, #ede2cf, #7b815f 54%, #2f3925);
+    }
+
+    /* Placeholder until approved hotel imagery is added to assets/hotels/*.webp. */
+    .hotel-image::before {
+      content: "";
+      position: absolute;
+      inset: 18% 12% auto;
+      height: 34%;
+      border: 1px solid rgba(255, 248, 240, 0.22);
+      border-bottom: 0;
+      border-radius: 120px 120px 0 0;
+    }
+
+    .hotel-card:hover .hotel-image {
+      background-size: 104% 104%, 104% 104%;
+    }
+
+    .hotel-kicker {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .hotel-body {
+      padding: 22px;
+    }
+
+    .hotel-body h3 {
+      margin: 0 0 8px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 27px;
+      line-height: 1.05;
+      font-weight: 500;
+    }
+
+    .hotel-category,
+    .hotel-distance {
+      color: var(--rose);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .hotel-body p {
+      margin: 12px 0 0;
+      color: var(--muted);
+    }
+
+    .hotel-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .hotel-actions .button {
+      min-height: 44px;
+      padding-inline: 14px;
+    }
+
+    .button .arrow-icon {
+      transition: transform 240ms ease;
+    }
+
+    .button:hover .arrow-icon {
+      transform: translateX(3px);
+    }
+
+    .map-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 18px;
+      margin-top: 18px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: 0 12px 35px rgba(38, 33, 29, 0.07);
+    }
+
+    .map-copy {
+      align-self: center;
+    }
+
+    .map-copy h3 {
+      margin: 0 0 8px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 30px;
+      line-height: 1.05;
+      font-weight: 500;
+    }
+
+    .map-copy p {
+      margin: 0 0 18px;
+      color: var(--muted);
+    }
+
+    .map-frame {
+      min-height: 300px;
+      overflow: hidden;
+      border: 0;
+      border-radius: 8px;
+      background: var(--wash);
+    }
+
+    .map-frame iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 300px;
+      border: 0;
     }
 
     .timeline {
       position: relative;
       display: grid;
-      gap: 0;
-      max-width: 860px;
-      margin-top: 30px;
-      padding-left: 28px;
+      gap: 22px;
+      max-width: 880px;
+      margin-top: 44px;
+      padding-left: 22px;
     }
 
     .timeline::before {
       content: "";
       position: absolute;
-      top: 12px;
-      bottom: 12px;
-      left: 9px;
+      top: 18px;
+      bottom: 28px;
+      left: 0;
       width: 1px;
-      background: linear-gradient(var(--rose), rgba(184, 145, 87, 0.25));
+      background: rgba(111, 115, 86, 0.28);
     }
 
     .time-row {
       position: relative;
       display: grid;
-      grid-template-columns: 128px 1fr;
-      gap: 18px;
-      padding: 0 0 24px;
+      grid-template-columns: minmax(130px, 0.35fr) minmax(0, 1fr);
+      gap: clamp(8px, 3vw, 30px);
+      padding: 0 0 38px;
       border-top: 0;
     }
 
     .time-row::before {
       content: "";
       position: absolute;
-      top: 6px;
-      left: -27px;
-      width: 19px;
-      height: 19px;
-      border: 4px solid var(--paper);
+      top: 16px;
+      left: -28px;
+      width: 13px;
+      height: 13px;
+      border: 3px solid var(--paper);
       border-radius: 999px;
-      background: var(--rose);
-      box-shadow: 0 0 0 1px var(--line);
+      background: var(--olive);
+      box-shadow: 0 0 0 1px rgba(111, 115, 86, 0.25);
     }
 
     .time {
-      color: var(--rose);
-      font-weight: 900;
+      color: rgba(111, 115, 86, 0.23);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(58px, 9vw, 92px);
+      line-height: 0.88;
+      font-weight: 500;
+      white-space: nowrap;
     }
 
     .schedule-card {
-      padding: 18px 20px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.78);
-      box-shadow: 0 8px 28px rgba(38, 33, 29, 0.06);
+      align-self: end;
+      padding: 14px 0 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
     }
 
     .schedule-title {
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 8px;
-      font-size: 18px;
+      margin-bottom: 10px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(25px, 4vw, 38px);
+      line-height: 1.05;
+      font-weight: 500;
     }
 
     .schedule-title .icon {
       color: var(--gold);
+    }
+
+    .schedule-card p {
+      max-width: 620px;
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 17px;
     }
 
     .note {
@@ -527,10 +763,52 @@
       }
 
       .grid,
-      .grid.two,
-      .hotel-list {
+      .grid.two {
         grid-template-columns: 1fr;
         gap: 12px;
+      }
+
+      .quote-section {
+        min-height: 0;
+        padding: 116px 0 126px;
+      }
+
+      .hotel-toolbar {
+        margin-bottom: 12px;
+      }
+
+      .carousel-controls {
+        display: none;
+      }
+
+      .hotel-carousel {
+        grid-auto-columns: 88%;
+        gap: 14px;
+        margin-inline: -16px;
+        padding-inline: 16px;
+        scroll-padding-inline: 16px;
+      }
+
+      .hotel-body {
+        padding: 20px;
+      }
+
+      .hotel-body h3 {
+        font-size: 25px;
+      }
+
+      .hotel-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .map-panel {
+        grid-template-columns: 1fr;
+        padding: 14px;
+      }
+
+      .map-frame,
+      .map-frame iframe {
+        min-height: 280px;
       }
 
       .section {
@@ -549,8 +827,20 @@
 
       .time-row {
         grid-template-columns: 1fr;
-        gap: 4px;
-        padding: 0 0 18px;
+        gap: 0;
+        padding: 0 0 46px;
+      }
+
+      .time {
+        font-size: clamp(64px, 18vw, 84px);
+      }
+
+      .schedule-card {
+        margin-top: -6px;
+      }
+
+      .schedule-card p {
+        font-size: 16px;
       }
 
       .shell {
@@ -592,6 +882,14 @@
         font-size: 12px;
       }
 
+      .hotel-carousel {
+        grid-auto-columns: 92%;
+      }
+
+      .quote-text {
+        font-size: clamp(34px, 10vw, 46px);
+      }
+
       footer {
         padding: 28px 16px;
       }
@@ -603,6 +901,32 @@
       .footer-signature::before,
       .footer-signature::after {
         width: 22px;
+      }
+    }
+
+    @media (min-width: 980px) {
+      .hotel-carousel {
+        grid-auto-columns: calc((100% - 36px) / 3);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+
+      .section.reveal,
+      .monogram-separator {
+        opacity: 1;
+        transform: none;
       }
     }
   </style>
@@ -641,7 +965,14 @@
         </div>
       </section>
 
-      <section class="section" id="details">
+      <section class="section reveal quote-section" aria-label="Wedding note">
+        <div>
+          <p class="quote-text">We could not imagine this moment without you.</p>
+          <div class="monogram-separator" aria-hidden="true">M · R</div>
+        </div>
+      </section>
+
+      <section class="section reveal" id="details">
         <h2 class="section-heading" data-lang="fr">Informations clés</h2>
         <h2 class="section-heading" data-lang="en">Key Details</h2>
         <div class="grid">
@@ -673,7 +1004,7 @@
         </div>
       </section>
 
-      <section class="section" id="travel">
+      <section class="section reveal" id="travel">
         <h2 class="section-heading" data-lang="fr">Voyage</h2>
         <h2 class="section-heading" data-lang="en">Travel</h2>
         <p class="section-intro" data-lang="fr">Voici les informations utiles pour arriver au Caire et se déplacer facilement pendant le séjour.</p>
@@ -711,51 +1042,148 @@
         </div>
       </section>
 
-      <section class="section" id="stay">
+      <section class="section reveal" id="stay">
         <h2 class="section-heading" data-lang="fr">Où séjourner</h2>
         <h2 class="section-heading" data-lang="en">Where to Stay</h2>
         <p class="section-intro" data-lang="fr">Nous avons sélectionné quelques hôtels pour faciliter votre séjour. Pour profiter des Pyramides et des festivités, privilégiez les hôtels près du lieu. Pour explorer davantage Le Caire, Downtown est aussi une bonne option.</p>
         <p class="section-intro" data-lang="en">We have selected a few hotels to make your stay easier. If you want to relax near the Pyramids and the wedding festivities, stay close to the venue. If you would like to explore Cairo, Downtown is also a great option.</p>
-        <div class="hotel-list" style="margin-top: 18px;">
-          <article class="hotel">
-            <div class="hotel-heading"><i data-lucide="hotel" class="icon"></i><strong>Hyatt Regency Cairo West</strong></div>
-            <span>4.3 mi</span>
-            <span>Special event rate: $197 to $189</span>
-          </article>
-          <article class="hotel">
-            <div class="hotel-heading"><i data-lucide="landmark" class="icon"></i><strong>Marriott Mena House Cairo</strong></div>
-            <span>0.1 mi</span>
-            <span>Special event rate: $507 to $486</span>
-          </article>
-          <article class="hotel">
-            <div class="hotel-heading"><i data-lucide="hotel" class="icon"></i><strong>Sofitel Cairo Downtown Nile</strong></div>
-            <span>7.9 mi</span>
-            <span>Special event rate: $176 to $169</span>
-          </article>
-          <article class="hotel">
-            <div class="hotel-heading"><i data-lucide="gem" class="icon"></i><strong>Giza Palace Hotel & Spa - The Leading Hotels of the World</strong></div>
-            <span>8.2 mi</span>
-            <span>Special event rate: $283 to $274</span>
-          </article>
-          <article class="hotel">
-            <div class="hotel-heading"><i data-lucide="hotel" class="icon"></i><strong>Four Seasons Hotel Cairo at First Residence</strong></div>
-            <span>5.7 mi</span>
-            <span>Special event rate: $361 to $345</span>
-          </article>
-          <article class="hotel">
-            <div class="hotel-heading"><i data-lucide="waves" class="icon"></i><strong>Kempinski Nile Hotel Cairo</strong></div>
-            <span>6.9 mi</span>
-            <span>Special event rate: $190 to $182</span>
-          </article>
-          <article class="hotel">
-            <div class="hotel-heading"><i data-lucide="building-2" class="icon"></i><strong>Crowne Plaza West Cairo Arkan by IHG</strong></div>
-            <span>8.1 mi</span>
-            <span>Special event rate: $182 to $174</span>
-          </article>
+        <div class="hotel-shell">
+          <div class="hotel-toolbar">
+            <div class="carousel-status"><span id="hotel-current">1</span> / <span id="hotel-total">7</span></div>
+            <div class="carousel-controls" aria-label="Hotel carousel controls">
+              <button class="carousel-arrow" type="button" data-carousel="prev" aria-label="Previous hotel"><i data-lucide="arrow-left" class="icon"></i></button>
+              <button class="carousel-arrow" type="button" data-carousel="next" aria-label="Next hotel"><i data-lucide="arrow-right" class="icon"></i></button>
+            </div>
+          </div>
+
+          <div class="hotel-carousel" id="hotel-carousel" tabindex="0" aria-label="Hotel options">
+            <article class="hotel-card" data-hotel-name="Hyatt Regency Cairo West" data-distance="4.3 mi" data-time="About 12 to 18 minutes by car" data-route="https://www.google.com/maps/dir/?api=1&origin=Hyatt+Regency+Cairo+West&destination=Marriott+Mena+House+Cairo&travelmode=driving">
+              <div class="hotel-image" role="img" aria-label="Elegant placeholder for Hyatt Regency Cairo West"><p class="hotel-kicker">Near the Pyramids</p></div>
+              <div class="hotel-body">
+                <div class="hotel-category" data-lang="fr">Resort contemporain</div>
+                <div class="hotel-category" data-lang="en">Contemporary resort</div>
+                <h3>Hyatt Regency Cairo West</h3>
+                <p data-lang="fr">Une adresse confortable côté Giza, pratique pour rester proche du lieu tout en gardant une atmosphère calme.</p>
+                <p data-lang="en">A comfortable Giza-side stay, practical for being close to the venue with a calm resort feel.</p>
+                <p class="hotel-distance">4.3 mi · Special event rate: $197 to $189</p>
+                <div class="hotel-actions">
+                  <a class="button primary" href="https://www.hyatt.com/hyatt-regency/en-US/caihr-hyatt-regency-cairo-west" target="_blank" rel="noopener">View rooms <i data-lucide="arrow-right" class="icon arrow-icon"></i></a>
+                  <a class="button secondary" href="https://www.google.com/maps/dir/?api=1&origin=Hyatt+Regency+Cairo+West&destination=Marriott+Mena+House+Cairo&travelmode=driving" target="_blank" rel="noopener">View route</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="hotel-card" data-hotel-name="Marriott Mena House Cairo" data-distance="0.1 mi" data-time="On site / a short walk" data-route="https://www.google.com/maps/dir/?api=1&origin=Marriott+Mena+House+Cairo&destination=Marriott+Mena+House+Cairo&travelmode=walking">
+              <div class="hotel-image" role="img" aria-label="Elegant placeholder for Marriott Mena House Cairo"><p class="hotel-kicker">Wedding venue</p></div>
+              <div class="hotel-body">
+                <div class="hotel-category" data-lang="fr">Adresse iconique</div>
+                <div class="hotel-category" data-lang="en">Iconic address</div>
+                <h3>Marriott Mena House Cairo</h3>
+                <p data-lang="fr">Le choix le plus simple pour profiter pleinement du week-end, directement au coeur des festivités.</p>
+                <p data-lang="en">The simplest choice for enjoying the weekend fully, directly at the heart of the celebration.</p>
+                <p class="hotel-distance">0.1 mi · Special event rate: $507 to $486</p>
+                <div class="hotel-actions">
+                  <a class="button primary" href="https://www.marriott.com/en-us/hotels/caimn-marriott-mena-house-cairo/overview/" target="_blank" rel="noopener">View rooms <i data-lucide="arrow-right" class="icon arrow-icon"></i></a>
+                  <a class="button secondary" href="https://www.google.com/maps/dir/?api=1&origin=Marriott+Mena+House+Cairo&destination=Marriott+Mena+House+Cairo&travelmode=walking" target="_blank" rel="noopener">View route</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="hotel-card" data-hotel-name="Sofitel Cairo Downtown Nile" data-distance="7.9 mi" data-time="About 25 to 40 minutes by car" data-route="https://www.google.com/maps/dir/?api=1&origin=Sofitel+Cairo+Downtown+Nile&destination=Marriott+Mena+House+Cairo&travelmode=driving">
+              <div class="hotel-image" role="img" aria-label="Elegant placeholder for Sofitel Cairo Downtown Nile"><p class="hotel-kicker">Downtown Cairo</p></div>
+              <div class="hotel-body">
+                <div class="hotel-category" data-lang="fr">Nile & centre-ville</div>
+                <div class="hotel-category" data-lang="en">Nile & downtown</div>
+                <h3>Sofitel Cairo Downtown Nile</h3>
+                <p data-lang="fr">Une option centrale pour les invités qui souhaitent découvrir Le Caire avant ou après le mariage.</p>
+                <p data-lang="en">A central option for guests who want to explore Cairo before or after the wedding.</p>
+                <p class="hotel-distance">7.9 mi · Special event rate: $176 to $169</p>
+                <div class="hotel-actions">
+                  <a class="button primary" href="https://sofitel.accor.com/" target="_blank" rel="noopener">View rooms <i data-lucide="arrow-right" class="icon arrow-icon"></i></a>
+                  <a class="button secondary" href="https://www.google.com/maps/dir/?api=1&origin=Sofitel+Cairo+Downtown+Nile&destination=Marriott+Mena+House+Cairo&travelmode=driving" target="_blank" rel="noopener">View route</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="hotel-card" data-hotel-name="Giza Palace Hotel & Spa" data-distance="8.2 mi" data-time="About 25 to 45 minutes by car" data-route="https://www.google.com/maps/dir/?api=1&origin=Giza+Palace+Hotel+and+Spa&destination=Marriott+Mena+House+Cairo&travelmode=driving">
+              <div class="hotel-image" role="img" aria-label="Elegant placeholder for Giza Palace Hotel and Spa"><p class="hotel-kicker">Leading Hotels</p></div>
+              <div class="hotel-body">
+                <div class="hotel-category" data-lang="fr">Luxe classique</div>
+                <div class="hotel-category" data-lang="en">Classic luxury</div>
+                <h3>Giza Palace Hotel & Spa</h3>
+                <p data-lang="fr">Une option plus premium, pensée pour un séjour élégant autour de Giza et des Pyramides.</p>
+                <p data-lang="en">A more premium option for an elegant stay around Giza and the Pyramids.</p>
+                <p class="hotel-distance">8.2 mi · Special event rate: $283 to $274</p>
+                <div class="hotel-actions">
+                  <a class="button primary" href="https://www.lhw.com/" target="_blank" rel="noopener">View rooms <i data-lucide="arrow-right" class="icon arrow-icon"></i></a>
+                  <a class="button secondary" href="https://www.google.com/maps/dir/?api=1&origin=Giza+Palace+Hotel+and+Spa&destination=Marriott+Mena+House+Cairo&travelmode=driving" target="_blank" rel="noopener">View route</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="hotel-card" data-hotel-name="Four Seasons Hotel Cairo at First Residence" data-distance="5.7 mi" data-time="About 20 to 35 minutes by car" data-route="https://www.google.com/maps/dir/?api=1&origin=Four+Seasons+Hotel+Cairo+at+First+Residence&destination=Marriott+Mena+House+Cairo&travelmode=driving">
+              <div class="hotel-image" role="img" aria-label="Elegant placeholder for Four Seasons Hotel Cairo at First Residence"><p class="hotel-kicker">Four Seasons</p></div>
+              <div class="hotel-body">
+                <div class="hotel-category" data-lang="fr">Luxe international</div>
+                <div class="hotel-category" data-lang="en">International luxury</div>
+                <h3>Four Seasons Hotel Cairo at First Residence</h3>
+                <p data-lang="fr">Une adresse raffinée avec service haut de gamme, idéale pour prolonger le séjour au Caire.</p>
+                <p data-lang="en">A refined address with elevated service, ideal for extending the Cairo stay.</p>
+                <p class="hotel-distance">5.7 mi · Special event rate: $361 to $345</p>
+                <div class="hotel-actions">
+                  <a class="button primary" href="https://www.fourseasons.com/cairofr/" target="_blank" rel="noopener">View rooms <i data-lucide="arrow-right" class="icon arrow-icon"></i></a>
+                  <a class="button secondary" href="https://www.google.com/maps/dir/?api=1&origin=Four+Seasons+Hotel+Cairo+at+First+Residence&destination=Marriott+Mena+House+Cairo&travelmode=driving" target="_blank" rel="noopener">View route</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="hotel-card" data-hotel-name="Kempinski Nile Hotel Cairo" data-distance="6.9 mi" data-time="About 25 to 40 minutes by car" data-route="https://www.google.com/maps/dir/?api=1&origin=Kempinski+Nile+Hotel+Cairo&destination=Marriott+Mena+House+Cairo&travelmode=driving">
+              <div class="hotel-image" role="img" aria-label="Elegant placeholder for Kempinski Nile Hotel Cairo"><p class="hotel-kicker">Nile stay</p></div>
+              <div class="hotel-body">
+                <div class="hotel-category" data-lang="fr">Boutique au bord du Nil</div>
+                <div class="hotel-category" data-lang="en">Nile boutique stay</div>
+                <h3>Kempinski Nile Hotel Cairo</h3>
+                <p data-lang="fr">Une option élégante sur le Nil, pratique pour les invités qui veulent une expérience plus urbaine.</p>
+                <p data-lang="en">An elegant Nile-side option for guests who want a more urban Cairo experience.</p>
+                <p class="hotel-distance">6.9 mi · Special event rate: $190 to $182</p>
+                <div class="hotel-actions">
+                  <a class="button primary" href="https://www.kempinski.com/en/nile-hotel" target="_blank" rel="noopener">View rooms <i data-lucide="arrow-right" class="icon arrow-icon"></i></a>
+                  <a class="button secondary" href="https://www.google.com/maps/dir/?api=1&origin=Kempinski+Nile+Hotel+Cairo&destination=Marriott+Mena+House+Cairo&travelmode=driving" target="_blank" rel="noopener">View route</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="hotel-card" data-hotel-name="Crowne Plaza West Cairo Arkan" data-distance="8.1 mi" data-time="About 20 to 35 minutes by car" data-route="https://www.google.com/maps/dir/?api=1&origin=Crowne+Plaza+West+Cairo+Arkan&destination=Marriott+Mena+House+Cairo&travelmode=driving">
+              <div class="hotel-image" role="img" aria-label="Elegant placeholder for Crowne Plaza West Cairo Arkan"><p class="hotel-kicker">West Cairo</p></div>
+              <div class="hotel-body">
+                <div class="hotel-category" data-lang="fr">Confort moderne</div>
+                <div class="hotel-category" data-lang="en">Modern comfort</div>
+                <h3>Crowne Plaza West Cairo Arkan</h3>
+                <p data-lang="fr">Une solution moderne et pratique dans West Cairo, avec un bon équilibre confort et accès.</p>
+                <p data-lang="en">A modern and practical West Cairo option with a good balance of comfort and access.</p>
+                <p class="hotel-distance">8.1 mi · Special event rate: $182 to $174</p>
+                <div class="hotel-actions">
+                  <a class="button primary" href="https://www.ihg.com/crowneplaza/hotels/us/en/cairo/caiwc/hoteldetail" target="_blank" rel="noopener">View rooms <i data-lucide="arrow-right" class="icon arrow-icon"></i></a>
+                  <a class="button secondary" href="https://www.google.com/maps/dir/?api=1&origin=Crowne+Plaza+West+Cairo+Arkan&destination=Marriott+Mena+House+Cairo&travelmode=driving" target="_blank" rel="noopener">View route</a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="map-panel">
+            <div class="map-copy">
+              <h3 id="map-hotel">Hyatt Regency Cairo West</h3>
+              <p><span id="map-distance">4.3 mi</span> · <span id="map-time">About 12 to 18 minutes by car</span></p>
+              <a class="button secondary" id="map-route" href="https://www.google.com/maps/dir/?api=1&origin=Hyatt+Regency+Cairo+West&destination=Marriott+Mena+House+Cairo&travelmode=driving" target="_blank" rel="noopener"><i data-lucide="map" class="icon"></i>View route</a>
+            </div>
+            <div class="map-frame">
+              <iframe title="Map to Marriott Mena House Cairo" loading="lazy" src="https://www.google.com/maps?q=Marriott%20Mena%20House%20Cairo&output=embed"></iframe>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="section" id="schedule">
+      <section class="section reveal" id="schedule">
         <h2 class="section-heading" data-lang="fr">Programme</h2>
         <h2 class="section-heading" data-lang="en">Schedule</h2>
         <p class="section-intro" data-lang="fr">Dimanche 25 octobre 2026, au Marriott Mena House, Cairo.</p>
@@ -833,6 +1261,69 @@
     });
 
     setLanguage(initial);
+
+    const carousel = document.querySelector("#hotel-carousel");
+    const hotelCards = carousel ? [...carousel.querySelectorAll(".hotel-card")] : [];
+    const currentHotel = document.querySelector("#hotel-current");
+    const totalHotels = document.querySelector("#hotel-total");
+    const mapHotel = document.querySelector("#map-hotel");
+    const mapDistance = document.querySelector("#map-distance");
+    const mapTime = document.querySelector("#map-time");
+    const mapRoute = document.querySelector("#map-route");
+
+    function updateHotelDetails(index) {
+      const card = hotelCards[index];
+      if (!card) return;
+      if (currentHotel) currentHotel.textContent = String(index + 1);
+      if (mapHotel) mapHotel.textContent = card.dataset.hotelName;
+      if (mapDistance) mapDistance.textContent = card.dataset.distance;
+      if (mapTime) mapTime.textContent = card.dataset.time;
+      if (mapRoute) mapRoute.href = card.dataset.route;
+    }
+
+    if (carousel && hotelCards.length) {
+      if (totalHotels) totalHotels.textContent = String(hotelCards.length);
+      updateHotelDetails(0);
+
+      const scrollToCard = (direction) => {
+        const cardWidth = hotelCards[0].getBoundingClientRect().width + 18;
+        carousel.scrollBy({ left: direction * cardWidth, behavior: "smooth" });
+      };
+
+      document.querySelector("[data-carousel='prev']")?.addEventListener("click", () => scrollToCard(-1));
+      document.querySelector("[data-carousel='next']")?.addEventListener("click", () => scrollToCard(1));
+
+      carousel.addEventListener("scroll", () => {
+        const center = carousel.scrollLeft + carousel.clientWidth / 2;
+        let closestIndex = 0;
+        let closestDistance = Infinity;
+        hotelCards.forEach((card, index) => {
+          const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+          const distance = Math.abs(center - cardCenter);
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestIndex = index;
+          }
+        });
+        updateHotelDetails(closestIndex);
+      }, { passive: true });
+    }
+
+    const revealItems = [...document.querySelectorAll(".reveal")];
+    if ("IntersectionObserver" in window) {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.16 });
+      revealItems.forEach((item) => revealObserver.observe(item));
+    } else {
+      revealItems.forEach((item) => item.classList.add("is-visible"));
+    }
+
     lucide.createIcons();
   </script>
 </body>

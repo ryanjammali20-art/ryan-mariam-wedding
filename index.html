@@ -1992,6 +1992,16 @@
       text-transform: uppercase;
     }
 
+    body.lang-fr .favorite-item [data-lang="en"],
+    body.lang-en .favorite-item [data-lang="fr"] {
+      display: none;
+    }
+
+    body.lang-fr .favorite-item [data-lang="fr"],
+    body.lang-en .favorite-item [data-lang="en"] {
+      display: block;
+    }
+
     @media (max-width: 900px) {
       .countdown-wrap,
       .couple-note-inner,
@@ -2118,7 +2128,7 @@
       <section class="section reveal couple-note" id="note">
         <div class="couple-note-inner">
           <figure class="couple-photo">
-            <img src="assets/sections/couple-note.webp" width="1061" height="1000" loading="lazy" alt="Mariam and Ryan smiling together with flowers">
+            <img src="assets/sections/couple-note.webp" width="1400" height="1400" loading="lazy" alt="Mariam and Ryan smiling together with flowers">
           </figure>
           <div class="couple-copy">
             <p class="section-kicker" data-lang="fr">Un mot de nous deux</p>
@@ -2266,8 +2276,7 @@
               <li class="favorite-item">
                 <span class="favorite-icon"><i data-lucide="columns-3" class="icon"></i></span>
                 <div>
-                  <strong data-lang="fr">Grand Egyptian Museum</strong>
-                  <strong data-lang="en">Grand Egyptian Museum</strong>
+                  <strong>Grand Egyptian Museum</strong>
                   <span data-lang="fr">Le nouveau grand musée près des Pyramides, parfait pour une demi-journée.</span>
                   <span data-lang="en">The major new museum near the Pyramids, perfect for a half-day visit.</span>
                   <a href="https://www.google.com/maps/search/?api=1&query=Grand+Egyptian+Museum" target="_blank" rel="noopener">Map</a>
